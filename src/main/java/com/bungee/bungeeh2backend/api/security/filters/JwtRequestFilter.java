@@ -40,7 +40,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
         String token = null;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer")) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             token = authorizationHeader;
             log.debug("Token before trim" + token);
             // token = authorizationHeader.substring(7);
@@ -49,7 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(token);
             log.debug(username);
         }
-        if (username != null && SecurityContextHolder.getContext() == null) {
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userCredentialService.loadUserByUsername(username);
 
             if (jwtUtil.validateToken(token,userDetails)) {
