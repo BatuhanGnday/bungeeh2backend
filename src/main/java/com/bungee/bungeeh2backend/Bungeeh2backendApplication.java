@@ -12,6 +12,8 @@ public class Bungeeh2backendApplication {
 
         SpringApplication.run(Bungeeh2backendApplication.class, args);
     }
+
+    // #freecomment
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
