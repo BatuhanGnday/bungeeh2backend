@@ -4,7 +4,7 @@ import com.bungee.bungeeh2backend.api.exceptions.NotFoundException;
 import com.bungee.bungeeh2backend.database.models.restaurant.Restaurant;
 import com.bungee.bungeeh2backend.database.models.restaurant.review.Review;
 import com.bungee.bungeeh2backend.database.repositories.IReviewRepository;
-import com.bungee.bungeeh2backend.database.repositories.RestaurantRepository;
+import com.bungee.bungeeh2backend.database.repositories.IRestaurantRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class ReviewService {
     //<editor-fold desc="Fields">
 
     private final IReviewRepository reviewRepository;
-    private final RestaurantRepository restaurantRepository;
+    private final IRestaurantRepository IRestaurantRepository;
 
     //</editor-fold>
 
@@ -24,9 +24,9 @@ public class ReviewService {
 
     public ReviewService(
             IReviewRepository reviewRepository,
-            RestaurantRepository restaurantRepository) {
+            IRestaurantRepository IRestaurantRepository) {
         this.reviewRepository = reviewRepository;
-        this.restaurantRepository = restaurantRepository;
+        this.IRestaurantRepository = IRestaurantRepository;
     }
 
     //</editor-fold>
@@ -37,7 +37,7 @@ public class ReviewService {
     }
 
     public List<Review> getReviewsOfARestaurant(int restaurantId) {
-        Restaurant restaurant = restaurantRepository
+        Restaurant restaurant = IRestaurantRepository
                 .findById(restaurantId)
                 .orElseThrow(NotFoundException::new);
 
@@ -45,7 +45,7 @@ public class ReviewService {
     }
 
     public Review createReviewToRestaurant(int restaurantId, Review review) {
-        Restaurant restaurant = restaurantRepository
+        Restaurant restaurant = IRestaurantRepository
                 .findById(restaurantId)
                 .orElseThrow(NotFoundException::new);
         // TODO: do necessary checks

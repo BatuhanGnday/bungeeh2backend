@@ -2,7 +2,7 @@ package com.bungee.bungeeh2backend.api.services;
 
 import com.bungee.bungeeh2backend.api.exceptions.NotFoundException;
 import com.bungee.bungeeh2backend.database.models.restaurant.Restaurant;
-import com.bungee.bungeeh2backend.database.repositories.RestaurantRepository;
+import com.bungee.bungeeh2backend.database.repositories.IRestaurantRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +12,13 @@ public class RestaurantService {
 
     //<editor-fold desc="Fields">
 
-    private final RestaurantRepository repository;
+    private final IRestaurantRepository repository;
 
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
 
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(IRestaurantRepository repository) {
         this.repository = repository;
     }
 

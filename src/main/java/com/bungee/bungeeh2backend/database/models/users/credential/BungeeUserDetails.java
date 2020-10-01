@@ -1,32 +1,34 @@
-package com.bungee.bungeeh2backend.api.security.authentication;
+package com.bungee.bungeeh2backend.database.models.users.credential;
 
-import com.bungee.bungeeh2backend.database.models.users.credential.UserCredential;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 
-public class BungeeUserPrincipal implements UserDetails {
+@Entity
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class BungeeUserDetails implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private UserCredential userCredential;
+    @NonNull
+    @Column(nullable = false, unique = true)
+    private String username;
 
-    public BungeeUserPrincipal(UserCredential userCredential) {
-        this.userCredential = userCredential;
-    }
+    @NonNull
+    private String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return userCredential.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return userCredential.getUsername();
     }
 
     @Override

@@ -9,11 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Bungeeh2backendApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(Bungeeh2backendApplication.class, args);
     }
-
-    // #freecommentforcommit
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
