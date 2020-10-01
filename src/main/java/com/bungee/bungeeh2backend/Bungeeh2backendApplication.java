@@ -13,7 +13,7 @@ public class Bungeeh2backendApplication {
         SpringApplication.run(Bungeeh2backendApplication.class, args);
     }
 
-    // #freecomment
+    // #freecommentforcommit
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
